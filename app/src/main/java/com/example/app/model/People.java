@@ -5,6 +5,8 @@ public class People {
     private String lastName;
     private Integer contactNumber;
 
+    private String courseDesired;
+
     public People(String firstName, String lastName, Integer contactNumber) {
         this.firstName = firstName;
         this.lastName = lastName;

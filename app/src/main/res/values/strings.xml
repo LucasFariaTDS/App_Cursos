@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">App</string>
+    <string name="txt_button_save">Save</string>
+    <string name="txt_button_finish">Finish</string>
+    <string name="txt_button_clear">Clear</string>
+    <string name="txt_tittle">App list vip</string>
+    <string name="txt_hint_edit_first_name">First name</string>
+    <string name="txt_hint_edit_last_name">Last name</string>
+    <string name="txt_hint_edit_name_of_the_desired_course">Name of the desired course</string>
+    <string name="txt_hint_edit_contact_number">Contact number</string>
+</resources>

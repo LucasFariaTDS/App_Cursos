@@ -50,11 +50,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                  people = new People();
-                people.setFirstName(String.valueOf(edit_first_name.getText()));
-                        people.setLastName(String.valueOf(edit_last_name.getText()));
-                        people.setContactNumber(String.valueOf(edit_contact_number.getText()));
-                        people.setCourseDesired(String.valueOf(edit_desired_course.getText()));
-
+                 people.setFirstName(String.valueOf(edit_first_name.getText()));
+                 people.setLastName(String.valueOf(edit_last_name.getText()));
+                 people.setContactNumber(String.valueOf(edit_contact_number.getText()));
+                 people.setDiseredCourse(String.valueOf(edit_desired_course.getText()));
             }
         });
         button_clear.setOnClickListener(v -> {

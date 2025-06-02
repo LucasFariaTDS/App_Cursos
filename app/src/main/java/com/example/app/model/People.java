@@ -3,17 +3,12 @@ package com.example.app.model;
 public class People {
     private String firstName;
     private String lastName;
-    private String contactNumber;
-    private String courseDesired;
+    private Integer contactNumber;
 
-    public People() {
-    }
-
-    public People(String firstName, String lastName, String contactNumber, String courseDesired) {
+    public People(String firstName, String lastName, Integer contactNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.contactNumber = contactNumber;
-        this.courseDesired = courseDesired;
     }
 
     public String getFirstName() {
@@ -32,19 +27,11 @@ public class People {
         this.lastName = lastName;
     }
 
-    public String getContactNumber() {
+    public Integer getContactNumber() {
         return contactNumber;
     }
 
-    public void setContactNumber(String contactNumber) {
+    public void setContactNumber(Integer contactNumber) {
         this.contactNumber = contactNumber;
-    }
-
-    public String getCourseDesired() {
-        return courseDesired;
-    }
-
-    public void setCourseDesired(String courseDesired) {
-        this.courseDesired = courseDesired;
     }
 }

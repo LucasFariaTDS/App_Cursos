@@ -63,8 +63,9 @@ public class MainActivity extends AppCompatActivity {
                     edit_contact_number.setText("");
         });
         button_finish.setOnClickListener(v ->{
-
+            finish();
         });
+
     }
 
 

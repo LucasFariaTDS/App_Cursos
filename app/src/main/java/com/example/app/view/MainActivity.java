@@ -1,10 +1,13 @@
 package com.example.app.view;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.app.R;
@@ -15,6 +18,7 @@ import com.example.app.model.People;
 public class MainActivity extends AppCompatActivity {
 
     People people;
+    Context context;
     private Button button_save, button_finish, button_clear;
     private EditText edit_first_name,edit_last_name,edit_desired_course,edit_contact_number;
     private PeopleController peopleController;
@@ -59,11 +63,10 @@ public class MainActivity extends AppCompatActivity {
                     edit_contact_number.setText("");
         });
         button_finish.setOnClickListener(v ->{
+            String msg = "Always come back, friend";
+            Toast.makeText(this,msg, Toast.LENGTH_SHORT).show();
             finish();
         });
 
     }
-
-
-
 }

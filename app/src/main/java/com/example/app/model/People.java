@@ -48,4 +48,14 @@ public class People {
     public void setDiseredCourse(String diseredCourse) {
         this.diseredCourse = diseredCourse;
     }
+
+    @Override
+    public String toString() {
+        return "People{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", contactNumber='" + contactNumber + '\'' +
+                ", diseredCourse='" + diseredCourse + '\'' +
+                '}';
+    }
 }

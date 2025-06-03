@@ -44,18 +44,14 @@ public class MainActivity extends AppCompatActivity {
                     edit_last_name.getText().toString(),
                     edit_contact_number.getText().toString(),
                     edit_desired_course.getText().toString()
-            );
+             );
+            peopleController.savePeople(people);
+            people.setFirstName(String.valueOf(edit_first_name.getText()));
+            people.setLastName(String.valueOf(edit_last_name.getText()));
+            people.setContactNumber(String.valueOf(edit_contact_number.getText()));
+            people.setDiseredCourse(String.valueOf(edit_desired_course.getText()));
         });
-        button_save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                 people = new People();
-                 people.setFirstName(String.valueOf(edit_first_name.getText()));
-                 people.setLastName(String.valueOf(edit_last_name.getText()));
-                 people.setContactNumber(String.valueOf(edit_contact_number.getText()));
-                 people.setDiseredCourse(String.valueOf(edit_desired_course.getText()));
-            }
-        });
+
         button_clear.setOnClickListener(v -> {
                     edit_first_name.setText("");
                     edit_last_name.setText("");

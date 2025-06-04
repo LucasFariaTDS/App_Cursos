@@ -3,18 +3,19 @@ package com.example.app.model;
 public class People {
     private String firstName;
     private String lastName;
-    private String contactNumber;
     private String diseredCourse;
+    private String contactNumber;
+
 
 
     public People() {
     }
 
-    public People(String firstName, String lastName, String contactNumber, String diseredCourse) {
+    public People(String firstName, String lastName, String diseredCourse,String contactNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.contactNumber = contactNumber;
         this.diseredCourse = diseredCourse;
+        this.contactNumber = contactNumber;
     }
 
     public String getFirstName() {
@@ -51,11 +52,10 @@ public class People {
 
     @Override
     public String toString() {
-        return "People{" +
+        return "People: " +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", contactNumber='" + contactNumber + '\'' +
-                ", diseredCourse='" + diseredCourse + '\'' +
-                '}';
+                " +, diseredCourse='" + diseredCourse + '\''+
+                ", contactNumber='" + contactNumber + '\'';
     }
 }

@@ -2,6 +2,7 @@ package com.example.app.view;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +19,8 @@ import com.example.app.model.People;
 public class MainActivity extends AppCompatActivity {
 
     People people;
-    Context context;
+    SharedPreferences preferences;
+    public static final String NAME_PREFERENCES = "pref_listvip";
     private Button button_save, button_finish, button_clear;
     private EditText edit_first_name,edit_last_name,edit_desired_course,edit_contact_number;
     private PeopleController peopleController;
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         courserController = new CourserController();
-        peopleController = new PeopleController(this);
+        peopleController = new PeopleController();
 
         edit_first_name = findViewById(R.id.editText_first_name);
         edit_last_name = findViewById(R.id.editText_last_name);
@@ -42,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         button_save = findViewById(R.id.button_save);
         button_finish = findViewById(R.id.button_finish);
 
+        preferences = getSharedPreferences(NAME_PREFERENCES, 0);
+        SharedPreferences.Editor listvip = preferences.edit();
+
         button_save.setOnClickListener(v -> {
              people = new People(
                     edit_first_name.getText().toString(),
@@ -49,11 +54,20 @@ public class MainActivity extends AppCompatActivity {
                     edit_contact_number.getText().toString(),
                     edit_desired_course.getText().toString()
              );
-            peopleController.savePeople(people);
-            people.setFirstName(String.valueOf(edit_first_name.getText()));
-            people.setLastName(String.valueOf(edit_last_name.getText()));
-            people.setContactNumber(String.valueOf(edit_contact_number.getText()));
-            people.setDiseredCourse(String.valueOf(edit_desired_course.getText()));
+
+             peopleController = new PeopleController();
+             peopleController.save(people);
+
+            listvip.putString("First name: ",people.getFirstName());
+            listvip.putString("Last name:: ",people.getLastName());
+            listvip.putString("Number Contact : ",people.getContactNumber());
+            listvip.putString("Disered Course: ",people.getDiseredCourse());
+            listvip.apply();
+
+             people.setFirstName(String.valueOf(edit_first_name.getText()));
+             people.setLastName(String.valueOf(edit_last_name.getText()));
+             people.setContactNumber(String.valueOf(edit_contact_number.getText()));
+             people.setDiseredCourse(String.valueOf(edit_desired_course.getText()));
         });
 
         button_clear.setOnClickListener(v -> {
@@ -67,6 +81,5 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this,msg, Toast.LENGTH_SHORT).show();
             finish();
         });
-
     }
 }

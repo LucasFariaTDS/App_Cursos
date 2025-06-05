@@ -6,7 +6,6 @@ public class Course {
     public Course(String desiredCourse) {
         this.desiredCourse = desiredCourse;
     }
-
     public String getDesiredCourse() {
         return desiredCourse;
     }

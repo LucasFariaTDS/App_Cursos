@@ -1,25 +1,43 @@
 package com.example.app.controller;
 
 import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
+import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 
 import com.example.app.model.People;
 
 public class PeopleController {
+    private static final String KEY_FIRST_NAME = "firstName";
+    private static final String KEY_LAST_NAME = "lastName";
+    private static final String KEY_DESIRED_COURSE = "desiredCourse";
+    private static final String KEY_CONTACT_NUMBER = "contactNumber";
+    public static final String NAME_PREFERENCES = "pref_listvip";
+    private final SharedPreferences preferences;
 
-    public PeopleController() {
+    public PeopleController(Context context) {
+        preferences = context.getSharedPreferences(NAME_PREFERENCES, Context.MODE_PRIVATE);
     }
 
-    @NonNull
-    @Override
-    public String toString() {
-        Log.d("MVC_Controller", "Controller Started");
-        return super.toString();
+    public void savePeople(People people) {
+        SharedPreferences.Editor listvip = preferences.edit();
+        listvip.putString(KEY_FIRST_NAME, people.getFirstName());
+        listvip.putString(KEY_LAST_NAME, people.getLastName());
+        listvip.putString(KEY_DESIRED_COURSE, people.getDesiredCourse());
+        listvip.putString(KEY_CONTACT_NUMBER, people.getContactNumber());
+        listvip.apply();
     }
-    public void save(People people){
-        Log.d("MVC_Controller", "save: " + people.toString());
+
+    public People loadPeople() {
+        String firstName= preferences.getString(KEY_FIRST_NAME,"");
+        String lastName = preferences.getString(KEY_LAST_NAME,"");
+        String desiredCourse = preferences.getString(KEY_DESIRED_COURSE,"");
+        String contactNumber = preferences.getString(KEY_CONTACT_NUMBER,"");
+
+        return new People(firstName,lastName,desiredCourse,contactNumber);
+    }
+
+    public void deletPeople(){
+        preferences.edit().clear().apply();
     }
 }

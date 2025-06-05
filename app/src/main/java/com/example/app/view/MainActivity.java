@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             edit_desired_course.setText("");
             edit_contact_number.setText("");
 
-            peopleController.deletPeople();
+            peopleController.cleanPeopleData();
             Toast.makeText(this, "Fields cleared", Toast.LENGTH_SHORT).show();
         });
 

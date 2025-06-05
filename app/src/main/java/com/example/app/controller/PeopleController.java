@@ -8,10 +8,12 @@ import androidx.annotation.NonNull;
 import com.example.app.model.People;
 
 public class PeopleController {
+
     private static final String KEY_FIRST_NAME = "firstName";
     private static final String KEY_LAST_NAME = "lastName";
     private static final String KEY_DESIRED_COURSE = "desiredCourse";
     private static final String KEY_CONTACT_NUMBER = "contactNumber";
+
     public static final String NAME_PREFERENCES = "pref_listvip";
     private final SharedPreferences preferences;
 
@@ -37,7 +39,7 @@ public class PeopleController {
         return new People(firstName,lastName,desiredCourse,contactNumber);
     }
 
-    public void deletPeople(){
+    public void cleanPeopleData(){
         preferences.edit().clear().apply();
     }
 }

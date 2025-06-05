@@ -1,30 +1,20 @@
 package com.example.app.view;
 
-
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.app.R;
-import com.example.app.controller.CourserController;
 import com.example.app.controller.PeopleController;
 import com.example.app.model.People;
 
 public class MainActivity extends AppCompatActivity {
 
-    People people;
-    SharedPreferences preferences;
-    public static final String NAME_PREFERENCES = "pref_listvip";
     private Button button_save, button_finish, button_clear;
     private EditText edit_first_name,edit_last_name,edit_desired_course,edit_contact_number;
     private PeopleController peopleController;
-    private CourserController courserController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +22,7 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        courserController = new CourserController();
-        peopleController = new PeopleController();
+        peopleController = new PeopleController(this);
 
         edit_first_name = findViewById(R.id.editText_first_name);
         edit_last_name = findViewById(R.id.editText_last_name);
@@ -44,42 +33,41 @@ public class MainActivity extends AppCompatActivity {
         button_save = findViewById(R.id.button_save);
         button_finish = findViewById(R.id.button_finish);
 
-        preferences = getSharedPreferences(NAME_PREFERENCES, 0);
-        SharedPreferences.Editor listvip = preferences.edit();
-
         button_save.setOnClickListener(v -> {
-             people = new People(
+            People people = new People(
                     edit_first_name.getText().toString(),
                     edit_last_name.getText().toString(),
-                    edit_contact_number.getText().toString(),
-                    edit_desired_course.getText().toString()
-             );
-
-             peopleController = new PeopleController();
-             peopleController.save(people);
-
-            listvip.putString("First name: ",people.getFirstName());
-            listvip.putString("Last name:: ",people.getLastName());
-            listvip.putString("Number Contact : ",people.getContactNumber());
-            listvip.putString("Disered Course: ",people.getDiseredCourse());
-            listvip.apply();
-
-             people.setFirstName(String.valueOf(edit_first_name.getText()));
-             people.setLastName(String.valueOf(edit_last_name.getText()));
-             people.setContactNumber(String.valueOf(edit_contact_number.getText()));
-             people.setDiseredCourse(String.valueOf(edit_desired_course.getText()));
+                    edit_desired_course.getText().toString(),
+                    edit_contact_number.getText().toString()
+            );
+            peopleController.savePeople(people);
+            Toast.makeText(this, "Data saved!", Toast.LENGTH_SHORT).show();
         });
 
         button_clear.setOnClickListener(v -> {
-                    edit_first_name.setText("");
-                    edit_last_name.setText("");
-                    edit_desired_course.setText("");
-                    edit_contact_number.setText("");
+            edit_first_name.setText("");
+            edit_last_name.setText("");
+            edit_desired_course.setText("");
+            edit_contact_number.setText("");
+
+            peopleController.deletPeople();
+            Toast.makeText(this, "Fields cleared", Toast.LENGTH_SHORT).show();
         });
-        button_finish.setOnClickListener(v ->{
-            String msg = "Always come back, friend";
-            Toast.makeText(this,msg, Toast.LENGTH_SHORT).show();
+
+        button_finish.setOnClickListener(v -> {
+            Toast.makeText(this, "Always come back, friend", Toast.LENGTH_SHORT).show();
+
             finish();
         });
+        loadDataPeople();
+    }
+
+    public void loadDataPeople(){
+        People people = peopleController.loadPeople();
+
+        edit_first_name.setText(people.getFirstName());
+        edit_last_name.setText(people.getLastName());
+        edit_desired_course.setText(people.getDesiredCourse());
+        edit_contact_number.setText(people.getContactNumber());
     }
 }

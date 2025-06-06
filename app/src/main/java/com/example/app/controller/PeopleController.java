@@ -2,6 +2,8 @@ package com.example.app.controller;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -16,6 +18,8 @@ public class PeopleController {
 
     public static final String NAME_PREFERENCES = "pref_listvip";
     private final SharedPreferences preferences;
+
+    private Spinner edit_desired_course;
 
     public PeopleController(Context context) {
         preferences = context.getSharedPreferences(NAME_PREFERENCES, Context.MODE_PRIVATE);

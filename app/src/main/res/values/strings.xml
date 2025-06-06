@@ -8,4 +8,16 @@
     <string name="txt_hint_edit_last_name">Last name</string>
     <string name="txt_hint_edit_name_of_the_desired_course">Name of the desired course</string>
     <string name="txt_hint_edit_contact_number">Contact number</string>
+    <string name="text_hint_desired_course">Desired Course</string>
+
+<string-array name="itens_list">
+    <item>Select the desired course</item>
+    <item>Artificial Intelligence Basics</item>
+    <item>Python Programming</item>
+    <item>Mobile App Development with Android</item>
+    <item>Data Science Essentials</item>
+    <item>Cloud Computing Fundamentals</item>
+    <item>Digital Marketing Strategies</item>
+    <item>Cybersecurity Basics</item>
+</string-array>
 </resources>

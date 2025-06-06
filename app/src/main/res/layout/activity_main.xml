@@ -92,21 +92,6 @@
         app:layout_constraintVertical_bias="0.288" />
 
     <EditText
-        android:id="@+id/editText_desired_course"
-        android:layout_width="333dp"
-        android:layout_height="45dp"
-        android:backgroundTint="#7C6D6D"
-        android:ems="10"
-        android:hint="@string/txt_hint_edit_name_of_the_desired_course"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.551"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.388" />
-
-    <EditText
         android:id="@+id/editText_contact_number"
         android:layout_width="333dp"
         android:layout_height="45dp"
@@ -120,4 +105,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.488" />
+
+    <Spinner
+        android:id="@+id/spinner_course"
+        android:layout_width="333dp"
+        android:layout_height="45dp"
+        android:hint="@string/text_hint_desired_course"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.387" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

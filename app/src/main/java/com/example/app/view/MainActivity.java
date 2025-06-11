@@ -13,6 +13,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.app.R;
+import com.example.app.controller.DBController;
 import com.example.app.controller.PeopleController;
 import com.example.app.model.People;
 
@@ -37,17 +38,6 @@ public class MainActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         edit_desired_course.setAdapter(adapter);
 
-        edit_desired_course.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedCourse = parent.getItemAtPosition(position).toString();
-                Toast.makeText(MainActivity.this, "Selected: " + selectedCourse, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
         peopleController = new PeopleController(this);
 
         edit_first_name = findViewById(R.id.editText_first_name);
@@ -59,15 +49,20 @@ public class MainActivity extends AppCompatActivity {
         button_finish = findViewById(R.id.button_finish);
 
         button_save.setOnClickListener(v -> {
+
+            DBController db = new DBController(this);
+            String result;
+
             String selectedCourse = edit_desired_course.getSelectedItem().toString();
             People people = new People(
                     edit_first_name.getText().toString(),
                     edit_last_name.getText().toString(),
                     selectedCourse,
                     edit_contact_number.getText().toString());
-            Toast.makeText(this, "Course saved: " + selectedCourse, Toast.LENGTH_SHORT).show();
+
             peopleController.savePeople(people);
-            Toast.makeText(this, "Data saved!", Toast.LENGTH_SHORT).show();
+            result = db.insertData(people.getFirstName(),people.getLastName(),people.getDesiredCourse(),people.getContactNumber());
+            Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
         });
 
         button_clear.setOnClickListener(v -> {

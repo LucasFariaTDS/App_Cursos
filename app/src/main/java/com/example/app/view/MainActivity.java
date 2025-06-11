@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private Button button_save, button_finish, button_clear;
     private EditText edit_first_name, edit_last_name, edit_contact_number;
     private PeopleController peopleController;
-    private Spinner edit_desired_course; // Declarado como variável de instância
+    private Spinner edit_desired_course;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        // Inicializar o Spinner como variável de instância
         edit_desired_course = findViewById(R.id.spinner_course);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
@@ -75,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
             edit_first_name.setText("");
             edit_last_name.setText("");
             edit_contact_number.setText("");
+            edit_desired_course.setSelection(0);
             peopleController.cleanPeopleData();
             Toast.makeText(this, "Fields cleared", Toast.LENGTH_SHORT).show();
         });

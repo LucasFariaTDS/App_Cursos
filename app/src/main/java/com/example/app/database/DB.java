@@ -22,7 +22,7 @@ public class DB extends SQLiteOpenHelper implements BaseColumns {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String criarDB = "CREATE TABLE " + DB.Table +
-                " ( " + DB.ID + " INTEGER PRIMARY KEY, "
+                "( " + DB.ID + " INTEGER PRIMARY KEY, "
                 + DB.Name + " text, "
                 + DB.LastName + " text, "
                 + DB.NumberContact + " text, "

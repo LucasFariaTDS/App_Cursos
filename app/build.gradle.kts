@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.app"
+    namespace = "com.lucas.Lista_vip"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.app"
+        applicationId = "com.lucas.Lista_vip"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

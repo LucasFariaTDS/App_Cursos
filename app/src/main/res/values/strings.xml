@@ -9,6 +9,10 @@
     <string name="txt_hint_edit_name_of_the_desired_course">Name of the desired course</string>
     <string name="txt_hint_edit_contact_number">Contact number</string>
     <string name="text_hint_desired_course">Desired Course</string>
+    <string name="msg_fields_cleared">Fields cleared</string>
+    <string name="msg_always_come_back">Always come back, friend</string>
+    <string name="msg_record_inserted">Record inserted</string>
+    <string name="msg_please_fill_in_all_fields">Please fill in all fields</string>
 
 <string-array name="itens_list">
     <item>Select the desired course</item>
@@ -20,4 +24,7 @@
     <item>Digital Marketing Strategies</item>
     <item>Cybersecurity Basics</item>
 </string-array>
+
+
+
 </resources>

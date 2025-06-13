@@ -1,4 +1,4 @@
-package com.example.app.view;
+package com.example.Lista_vip.view;
 
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -9,11 +9,10 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.Lista_vip.controller.DBController;
+import com.example.Lista_vip.controller.PeopleController;
+import com.example.Lista_vip.model.People;
 import com.example.app.R;
-import com.example.app.controller.DBController;
-import com.example.app.controller.PeopleController;
-import com.example.app.model.People;
 
 public class MainActivity extends AppCompatActivity {
     private Button button_save, button_finish, button_clear;
@@ -22,12 +21,11 @@ public class MainActivity extends AppCompatActivity {
     private PeopleController peopleController;
     private DBController dbController;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_spinner);
 
         peopleController = new PeopleController(this);
         dbController = new DBController(this);
@@ -41,15 +39,18 @@ public class MainActivity extends AppCompatActivity {
         button_finish = findViewById(R.id.button_finish);
 
         spinner_course = findViewById(R.id.spinner_course);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this,
-                R.array.itens_list,
-                android.R.layout.simple_spinner_item
-        );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_course.setAdapter(adapter);
+
+        setupSpinner();
 
         button_save.setOnClickListener(v -> {
+            if (edit_first_name.getText().toString().trim().isEmpty() ||
+                    edit_last_name.getText().toString().trim().isEmpty() ||
+                    edit_contact_number.getText().toString().trim().isEmpty()) {
+
+                Toast.makeText(this, getString(R.string.msg_please_fill_in_all_fields), Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             String result;
             String selectedCourse = spinner_course.getSelectedItem().toString();
 
@@ -70,11 +71,11 @@ public class MainActivity extends AppCompatActivity {
             edit_contact_number.setText("");
             spinner_course.setSelection(0);
             peopleController.cleanPeopleData();
-            Toast.makeText(this, "Fields cleared", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.msg_fields_cleared), Toast.LENGTH_SHORT).show();
         });
 
         button_finish.setOnClickListener(v -> {
-            Toast.makeText(this, "Always come back, friend", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.msg_always_come_back), Toast.LENGTH_SHORT).show();
             finish();
         });
 
@@ -87,10 +88,19 @@ public class MainActivity extends AppCompatActivity {
         edit_last_name.setText(people.getLastName());
         edit_contact_number.setText(people.getContactNumber());
         String savedCourse = people.getDesiredCourse();
-        ArrayAdapter<CharSequence> adapter = (ArrayAdapter<CharSequence>) spinner_course.getAdapter();
-        int position = adapter.getPosition(savedCourse);
+        int position = ((ArrayAdapter<CharSequence>) spinner_course.getAdapter()).getPosition(savedCourse);
         if (position >= 0) {
             spinner_course.setSelection(position);
         }
+    }
+
+    private void setupSpinner() {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.itens_list,
+                android.R.layout.simple_spinner_item
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_course.setAdapter(adapter);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.app.model;
+package com.example.Lista_vip.model;
 
 public class People {
     private final String firstName;

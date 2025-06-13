@@ -1,10 +1,10 @@
-package com.example.app.controller;
+package com.example.Lista_vip.controller;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.app.database.DB;
+import com.example.Lista_vip.database.DB;
 
 public class DBController {
     private SQLiteDatabase db;
@@ -23,11 +23,16 @@ public class DBController {
         data.put(DB.LastName, lastname);
         data.put(DB.NumberContact, numberContact);
         data.put(DB.Course, course);
-        result = db.insert(DB.Table, null, data);
-        if (result == -1) {
-            return "Error inserting record";
-        } else {
-            return "Record inserted";
+        try {
+            result = db.insert(DB.Table, null, data);
+            if (result == -1) {
+                return "Error inserting record";
+            } else {
+                return "Record inserted";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Database error: " + e.getMessage();
         }
     }
 }

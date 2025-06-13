@@ -1,15 +1,19 @@
-package com.example.app.view;
+package com.example.Lista_vip.view;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import com.example.app.R;
+import com.example.Lista_vip.R;
 
-public class splash_activity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
+
+    public static final int TIME_OUT_SPLASH = 5000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,5 +25,19 @@ public class splash_activity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        comutartelaSplash();
+
+    }
+    private void comutartelaSplash(){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent mainScreen = new Intent(SplashActivity.this,
+                        MainActivity.class);
+                startActivity(mainScreen);
+                finish();
+            }
+        },TIME_OUT_SPLASH);
     }
 }

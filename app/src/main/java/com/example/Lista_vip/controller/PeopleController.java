@@ -1,13 +1,10 @@
-package com.example.app.controller;
+package com.example.Lista_vip.controller;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-
-import com.example.app.model.People;
+import com.example.Lista_vip.model.People;
 
 public class PeopleController {
 
